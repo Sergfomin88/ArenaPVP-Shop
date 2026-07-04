@@ -179,7 +179,9 @@
   }
   .priv-card:hover .glow-border { opacity: 1; }
 
-  .case-3d { perspective: 1000px; }
+  .case-3d {
+    perspective: 1000px;
+  }
   .case-inner {
     transform-style: preserve-3d;
     animation: caseFloat 6s ease-in-out infinite;
@@ -212,8 +214,12 @@
     transform: translateY(0);
   }
 
-  .faq-item { transition: all 0.3s ease; }
-  .faq-item:hover { border-color: rgba(168,85,247,0.4); }
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+  .faq-item:hover {
+    border-color: rgba(168,85,247,0.4);
+  }
 
   ::-webkit-scrollbar { width: 10px; }
   ::-webkit-scrollbar-track { background: #05060f; }
@@ -230,13 +236,18 @@
     50% { background-position: 100% 50%; }
   }
 
-  .floating-badge { animation: badgeFloat 4s ease-in-out infinite; }
+  .floating-badge {
+    animation: badgeFloat 4s ease-in-out infinite;
+  }
   @keyframes badgeFloat {
     0%, 100% { transform: translateY(0) rotate(-3deg); }
     50% { transform: translateY(-10px) rotate(3deg); }
   }
 
-  .shine { position: relative; overflow: hidden; }
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
   .shine::after {
     content: '';
     position: absolute;
@@ -249,10 +260,16 @@
   }
   .shine:hover::after { left: 100%; }
 
-  .toast { animation: toastIn 0.3s ease; }
+  .toast {
+    animation: toastIn 0.3s ease;
+  }
   @keyframes toastIn {
     from { transform: translate(-50%, 20px); opacity: 0; }
     to { transform: translate(-50%, 0); opacity: 1; }
+  }
+
+  .case-img {
+    filter: drop-shadow(0 30px 60px rgba(251,191,36,0.4));
   }
 
   .info-banner {
@@ -260,19 +277,7 @@
     border: 1px solid rgba(251,191,36,0.3);
   }
 
-  .owner-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(20px);
-    transition: all 0.3s ease;
-  }
-  .owner-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(34,158,217,0.5);
-    box-shadow: 0 20px 50px rgba(34,158,217,0.3);
-  }
-
-  /* ==================== CHAT WIDGET ==================== */
+  /* Chat widget */
   .chat-widget-btn {
     position: fixed;
     bottom: 24px;
@@ -289,7 +294,6 @@
     transition: all 0.3s ease;
     z-index: 1000;
     animation: chatPulse 2s ease-in-out infinite;
-    border: none;
   }
   .chat-widget-btn:hover {
     transform: scale(1.1);
@@ -299,47 +303,19 @@
     0%, 100% { box-shadow: 0 10px 40px rgba(34,158,217,0.5); }
     50% { box-shadow: 0 10px 60px rgba(34,158,217,0.8); }
   }
-  .chat-widget-btn::after {
+  .chat-widget-btn::before {
     content: '';
     position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 18px;
-    height: 18px;
+    inset: -4px;
     border-radius: 50%;
-    background: #666;
-    border: 3px solid #05060f;
-    transition: background 0.3s;
+    background: linear-gradient(135deg, #229ED9, #0088cc);
+    opacity: 0.3;
+    animation: chatRipple 2s ease-out infinite;
   }
-  .chat-widget-btn.online::after {
-    background: #10b981;
-    animation: statusPulse 2s ease-in-out infinite;
+  @keyframes chatRipple {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.5); opacity: 0; }
   }
-  .chat-widget-btn.offline::after {
-    background: #ef4444;
-  }
-  @keyframes statusPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.7; }
-  }
-  .chat-badge {
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    min-width: 22px;
-    height: 22px;
-    border-radius: 11px;
-    background: #ef4444;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 0 6px;
-    border: 2px solid #05060f;
-  }
-  .chat-badge.show { display: flex; }
 
   .chat-window {
     position: fixed;
@@ -347,7 +323,6 @@
     right: 24px;
     width: 380px;
     max-width: calc(100vw - 48px);
-    height: 550px;
     max-height: calc(100vh - 150px);
     background: #0a0a14;
     border: 1px solid rgba(255,255,255,0.1);
@@ -359,7 +334,9 @@
     overflow: hidden;
     animation: chatWindowIn 0.3s ease;
   }
-  .chat-window.active { display: flex; }
+  .chat-window.active {
+    display: flex;
+  }
   @keyframes chatWindowIn {
     from { opacity: 0; transform: translateY(20px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
@@ -367,227 +344,141 @@
 
   .chat-header {
     background: linear-gradient(135deg, #229ED9, #0088cc);
-    padding: 16px 20px;
+    padding: 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-shrink: 0;
   }
   .chat-avatar {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: rgba(255,255,255,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
     position: relative;
-    flex-shrink: 0;
   }
-  .chat-avatar-status {
+  .chat-avatar::after {
+    content: '';
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 2px;
+    right: 2px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #666;
+    background: #10b981;
     border: 2px solid #0a0a14;
-    transition: background 0.3s;
   }
-  .chat-avatar-status.online { background: #10b981; }
-  .chat-avatar-status.offline { background: #ef4444; }
 
   .chat-body {
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
-    background: #05060f;
+    padding: 20px;
   }
-  .chat-body::-webkit-scrollbar { width: 6px; }
-  .chat-body::-webkit-scrollbar-track { background: transparent; }
-  .chat-body::-webkit-scrollbar-thumb { background: #2a2a4e; border-radius: 3px; }
-
-  .chat-msg {
+  .chat-message {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 12px 16px;
     margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .chat-quick-btns {
     display: flex;
     flex-direction: column;
-    animation: msgIn 0.3s ease;
+    gap: 8px;
+    margin-top: 16px;
   }
-  @keyframes msgIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .chat-msg.client { align-items: flex-start; }
-  .chat-msg.owner { align-items: flex-end; }
-  .chat-msg-meta {
-    font-size: 11px;
-    color: #666;
-    margin-bottom: 4px;
-    padding: 0 4px;
-  }
-  .chat-msg-bubble {
-    max-width: 80%;
+  .chat-quick-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
     padding: 10px 14px;
-    border-radius: 14px;
-    font-size: 14px;
-    line-height: 1.4;
-    word-wrap: break-word;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
   }
-  .chat-msg.client .chat-msg-bubble {
-    background: #1a1a2e;
-    color: white;
-    border-bottom-left-radius: 4px;
-    border-left: 3px solid #229ED9;
-  }
-  .chat-msg.owner .chat-msg-bubble {
-    background: linear-gradient(135deg, #ff2e63, #a855f7);
-    color: white;
-    border-bottom-right-radius: 4px;
+  .chat-quick-btn:hover {
+    background: rgba(34,158,217,0.2);
+    border-color: rgba(34,158,217,0.5);
   }
 
-  .chat-typing {
-    display: none;
-    padding: 8px 14px;
-    background: #1a1a2e;
-    border-radius: 14px;
-    border-left: 3px solid #229ED9;
-    width: fit-content;
-    margin-bottom: 12px;
+  .chat-managers {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
   }
-  .chat-typing.show { display: inline-block; }
-  .chat-typing span {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
+  .chat-manager-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .chat-manager-btn:hover {
+    background: rgba(34,158,217,0.2);
+    border-color: #229ED9;
+  }
+  .chat-manager-btn.selected {
+    background: rgba(34,158,217,0.3);
+    border-color: #229ED9;
+  }
+  .chat-manager-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: #229ED9;
-    margin: 0 2px;
-    animation: typing 1.4s ease-in-out infinite;
-  }
-  .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
-  .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
+    background: linear-gradient(135deg, #229ED9, #0088cc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-size: 20px;
   }
 
   .chat-input-area {
-    padding: 12px 16px;
+    padding: 16px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    background: #0a0a14;
-    flex-shrink: 0;
-    display: flex;
-    gap: 8px;
   }
-  .chat-input {
-    flex: 1;
-    background: #1a1a2e;
-    color: white;
-    border: 1px solid #2a2a4e;
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    font-family: inherit;
-    resize: none;
-  }
-  .chat-input:focus { border-color: #229ED9; }
-  .chat-input::placeholder { color: #555; }
-
   .chat-send-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 100%;
     background: linear-gradient(135deg, #229ED9, #0088cc);
     border: none;
-    color: white;
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
-    flex-shrink: 0;
+    gap: 8px;
   }
-  .chat-send-btn:hover:not(:disabled) {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(34,158,217,0.4);
-  }
-  .chat-send-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  .chat-nick-form {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    justify-content: center;
-  }
-  .chat-nick-form h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
-    background: linear-gradient(135deg, #ff2e63 0%, #a855f7 50%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .chat-nick-input {
-    background: #1a1a2e;
-    color: white;
-    border: 1px solid #2a2a4e;
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    font-family: inherit;
-  }
-  .chat-nick-input:focus { border-color: #229ED9; }
-  .chat-nick-submit {
-    background: linear-gradient(135deg, #229ED9, #0088cc);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-  }
-  .chat-nick-submit:hover {
+  .chat-send-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(34,158,217,0.4);
   }
-
-  .chat-close-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    flex-shrink: 0;
+  .chat-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
-  .chat-close-btn:hover { background: rgba(255,255,255,0.3); }
 
-  .chat-connection-msg {
-    text-align: center;
-    color: #666;
-    font-size: 12px;
-    padding: 8px;
-    font-style: italic;
+  /* Owner cards */
+  .owner-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+  .owner-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34,158,217,0.5);
+    box-shadow: 0 20px 50px rgba(34,158,217,0.3);
   }
 </style>
 </head>
@@ -616,9 +507,9 @@
       <a href="#how" class="hover:text-red-400 transition">Как купить</a>
       <a href="#faq" class="hover:text-red-400 transition">FAQ</a>
     </div>
-    <button onclick="toggleChat()" class="btn-tg px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2">
+    <button onclick="openChat()" class="btn-tg px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.16l-1.8 8.49c-.13.6-.49.75-.99.46l-2.74-2.02-1.32 1.27c-.15.15-.27.27-.55.27l.2-2.8 5.08-4.59c.22-.2-.05-.3-.34-.12l-6.27 3.95-2.7-.84c-.59-.18-.6-.59.12-.87l10.55-4.07c.49-.18.92.12.76.87z"/></svg>
-      Чат
+      Купить
     </button>
   </div>
 </nav>
@@ -643,11 +534,11 @@
           Покупай кейс и получай <span class="text-red-400 font-semibold">уникальную привилегию</span> на нашем PVP сервере. Шанс, азарт и крутые награды!
         </p>
         <div class="flex flex-wrap gap-3 mb-8">
-          <button onclick="toggleChat()" class="btn-neon px-8 py-4 rounded-2xl font-bold text-base flex items-center gap-2 shine">
-            <span class="text-xl">💬</span> Написать владельцу
+          <button onclick="openChat()" class="btn-neon px-8 py-4 rounded-2xl font-bold text-base flex items-center gap-2 shine">
+            <span class="text-xl">💳</span> Купить кейс — 350₽
           </button>
-          <button onclick="copyIP()" class="glass px-8 py-4 rounded-2xl font-bold text-base flex items-center gap-2 hover:bg-white/10 transition">
-            <span class="text-xl">📋</span> Скопировать IP
+          <button onclick="openChat()" class="btn-tg px-8 py-4 rounded-2xl font-bold text-base flex items-center gap-2">
+            <span class="text-xl">💬</span> Написать
           </button>
         </div>
         <div class="flex items-center gap-3">
@@ -777,8 +668,8 @@
               <span class="ml-auto text-xs text-gray-400">5%</span>
             </div>
           </div>
-          <button onclick="toggleChat()" class="btn-neon w-full px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 shine text-lg">
-            💬 Написать владельцу для покупки
+          <button onclick="openChat()" class="btn-neon w-full px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 shine text-lg">
+            💳 Купить кейс за 350₽
           </button>
         </div>
       </div>
@@ -805,9 +696,9 @@
           </div>
         </div>
         <p class="text-gray-400 text-sm mb-4">Основатель проекта. Поможет с покупкой и выдачей привилегий.</p>
-        <button onclick="toggleChat()" class="btn-tg w-full px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
-          💬 Написать в чате
-        </button>
+        <a href="https://t.me/Basicus228" target="_blank" class="btn-tg w-full px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+          💬 Написать
+        </a>
       </div>
       <div class="owner-card rounded-2xl p-6 reveal">
         <div class="flex items-center gap-4 mb-4">
@@ -818,9 +709,9 @@
           </div>
         </div>
         <p class="text-gray-400 text-sm mb-4">Со-владелец проекта. Полные права, поможет с любым вопросом.</p>
-        <button onclick="toggleChat()" class="btn-neon w-full px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
-          💬 Написать в чате
-        </button>
+        <a href="https://t.me/Dark_Legendochka" target="_blank" class="btn-neon w-full px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+          💬 Написать
+        </a>
       </div>
     </div>
   </div>
@@ -841,7 +732,7 @@
         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-2xl mb-5 shadow-lg shadow-blue-500/30">💬</div>
         <h3 class="font-display font-bold text-xl mb-3">Напиши владельцу</h3>
         <p class="text-gray-400 text-sm leading-relaxed">
-          Используй чат на сайте — напиши нам, и мы ответим в реальном времени!
+          Свяжись с <a href="https://t.me/Basicus228" target="_blank" class="text-blue-400 hover:underline font-semibold">@Basicus228</a> или <a href="https://t.me/Dark_Legendochka" target="_blank" class="text-purple-400 hover:underline font-semibold">@Dark_Legendochka</a> — оба владельцы!
         </p>
       </div>
       <div class="glass rounded-2xl p-8 relative reveal group hover:border-purple-500/40 transition">
@@ -889,7 +780,7 @@
           Присоединяйся к серверу и получи крутую привилегию, которая выделит тебя среди других игроков!
         </p>
         <div class="flex flex-wrap justify-center gap-3">
-          <button onclick="toggleChat()" class="btn-tg px-8 py-4 rounded-2xl font-bold flex items-center gap-2">
+          <button onclick="openChat()" class="btn-tg px-8 py-4 rounded-2xl font-bold flex items-center gap-2">
             💬 Написать владельцу
           </button>
           <button onclick="copyIP()" class="btn-neon px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shine">
@@ -915,57 +806,61 @@
         © 2026 ArenaPVP • Все права защищены
       </div>
       <div class="flex items-center gap-4 text-sm">
-        <span class="text-gray-400">@Basicus228</span>
+        <a href="https://t.me/Basicus228" target="_blank" class="text-gray-400 hover:text-white transition">@Basicus228</a>
         <span class="text-gray-700">•</span>
-        <span class="text-gray-400">@Dark_Legendochka</span>
+        <a href="https://t.me/Dark_Legendochka" target="_blank" class="text-gray-400 hover:text-white transition">@Dark_Legendochka</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ==================== CHAT WIDGET ==================== -->
-<button class="chat-widget-btn" id="chatWidgetBtn" onclick="toggleChat()">
-  <svg class="w-8 h-8" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-  <div class="chat-badge" id="chatBadge">0</div>
-</button>
+<!-- CHAT WIDGET -->
+<div class="chat-widget-btn" onclick="toggleChat()">
+  <svg class="w-8 h-8" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .99 4.29L2 22l5.71-.99C9 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.38 0-2.67-.33-3.82-.91l-.27-.15-3.22.56.56-3.22-.15-.27C4.33 14.67 4 13.38 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+</div>
 
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <div class="chat-avatar">
-      💬
-      <div class="chat-avatar-status" id="chatAvatarStatus"></div>
+    <div class="chat-avatar">💬</div>
+    <div class="flex-1">
+      <div class="font-bold">Быстрая связь</div>
+      <div class="text-xs opacity-80">Обычно отвечаем за 5 мин</div>
     </div>
-    <div class="flex-1 min-w-0">
-      <div class="font-bold text-white text-sm">Поддержка ArenaPVP</div>
-      <div class="text-xs text-white/70" id="chatStatusText">Подключение...</div>
-    </div>
-    <button class="chat-close-btn" onclick="toggleChat()">
+    <button onclick="toggleChat()" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
   
-  <!-- Форма ввода ника -->
-  <div class="chat-nick-form" id="chatNickForm">
-    <h3>👋 Привет!</h3>
-    <p class="text-gray-400 text-sm text-center">Введи свой ник в Minecraft, чтобы мы знали, кому выдавать привилегию:</p>
-    <input type="text" class="chat-nick-input" id="chatNickInput" placeholder="Твой ник в Minecraft" maxlength="20">
-    <button class="chat-nick-submit" onclick="submitNick()">Начать чат →</button>
-    <p class="text-gray-500 text-xs text-center">Обычно отвечаем за 5 минут</p>
-  </div>
-  
-  <!-- Чат -->
-  <div class="chat-body" id="chatBody" style="display:none;">
-    <div class="chat-connection-msg" id="chatConnectionMsg">Соединение с сервером...</div>
-    <div id="chatMessages"></div>
-    <div class="chat-typing" id="chatTyping">
-      <span></span><span></span><span></span>
+  <div class="chat-body">
+    <div class="chat-message">
+      👋 Привет! Выбери тему обращения и напиши любому владельцу — оба помогут!
+    </div>
+    
+    <div class="text-xs text-gray-400 uppercase tracking-wider mb-2 mt-4">Выбери тему:</div>
+    <div class="chat-quick-btns">
+      <div class="chat-quick-btn" onclick="selectQuickBtn(this, 'Хочу купить кейс за 350₽')">💳 Хочу купить кейс за 350₽</div>
+      <div class="chat-quick-btn" onclick="selectQuickBtn(this, 'Какие привилегии есть?')">🎁 Какие привилегии есть?</div>
+      <div class="chat-quick-btn" onclick="selectQuickBtn(this, 'Как оплатить?')">💰 Как оплатить?</div>
+      <div class="chat-quick-btn" onclick="selectQuickBtn(this, 'У меня вопрос')">❓ У меня вопрос</div>
+    </div>
+    
+    <div class="text-xs text-gray-400 uppercase tracking-wider mb-2 mt-6">Кому написать:</div>
+    <div class="chat-managers">
+      <div class="chat-manager-btn" onclick="selectManager('Basicus228', this)">
+        <div class="chat-manager-avatar">👑</div>
+        <div class="text-xs font-semibold">@Basicus228</div>
+      </div>
+      <div class="chat-manager-btn" onclick="selectManager('Dark_Legendochka', this)">
+        <div class="chat-manager-avatar">👑</div>
+        <div class="text-xs font-semibold">@Dark_Legendochka</div>
+      </div>
     </div>
   </div>
   
-  <div class="chat-input-area" id="chatInputArea" style="display:none;">
-    <textarea class="chat-input" id="chatInput" placeholder="Напиши сообщение..." rows="1" onkeydown="handleChatKeydown(event)"></textarea>
-    <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()" disabled>
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+  <div class="chat-input-area">
+    <button class="chat-send-btn" id="chatSendBtn" onclick="sendToTelegram()" disabled>
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.16l-1.8 8.49c-.13.6-.49.75-.99.46l-2.74-2.02-1.32 1.27c-.15.15-.27.27-.55.27l.2-2.8 5.08-4.59c.22-.2-.05-.3-.34-.12l-6.27 3.95-2.7-.84c-.59-.18-.6-.59.12-.87l10.55-4.07c.49-.18.92.12.76.87z"/></svg>
+      <span>Открыть в Telegram</span>
     </button>
   </div>
 </div>
@@ -975,19 +870,11 @@
     <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
       <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
     </div>
-    <span id="toastText">IP скопирован!</span>
+    <span>IP скопирован!</span>
   </div>
 </div>
 
 <script>
-  // ==================== НАСТРОЙКИ ЧАТА ====================
-  // ВАЖНО: замени на адрес своего сервера!
-  // Если сервер на твоём ПК — для локального теста: ws://localhost:8000
-  // Для доступа из интернета нужен публичный IP или туннель (ngrok)
-  const CHAT_SERVER_URL = "ws://localhost:8000";
-  // =====================================================
-
-  // Particles
   const particlesContainer = document.getElementById('particles');
   for (let i = 0; i < 30; i++) {
     const p = document.createElement('div');
@@ -1035,7 +922,7 @@
   };
 
   const grid = document.getElementById('privGrid');
-  privileges.forEach((p) => {
+  privileges.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'priv-card glass rounded-2xl p-6 reveal';
     card.style.setProperty('--card-color', p.color);
@@ -1065,8 +952,8 @@
   const faqs = [
     { q: 'Что я получу после покупки?', a: 'Вы получаете КЕЙС, который выдаётся вам в игре. Открытие происходит на самом сервере — выпадает случайная привилегия из 6 возможных.' },
     { q: 'Можно ли выбрать конкретную привилегию?', a: 'Нет. Покупается именно кейс с рандомным выпадением. Шансы указаны в таблице выше.' },
-    { q: 'Сколько стоит кейс?', a: 'Один кейс стоит 350 рублей. Оплата через чат на сайте — напиши владельцу!' },
-    { q: 'Кому писать — @Basicus228 или @Dark_Legendochka?', a: 'Оба — владельцы сервера с одинаковыми правами! Пиши в чат на сайте — ответит любой свободный владелец.' },
+    { q: 'Сколько стоит кейс?', a: 'Один кейс стоит 350 рублей. Оплата через любого владельца в Telegram.' },
+    { q: 'Кому писать — @Basicus228 или @Dark_Legendochka?', a: 'Оба — владельцы сервера с одинаковыми правами! Пиши любому, кто онлайн. Если один занят — пиши другому.' },
     { q: 'Где открывается кейс?', a: 'Кейс открывается прямо на сервере в игре. После оплаты вам выдадут кейс в инвентарь — просто используйте его.' },
     { q: 'Можно ли вернуть деньги?', a: 'Так как выпадение привилегии — это рандом, возврат после открытия кейса невозможен.' },
   ];
@@ -1100,279 +987,52 @@
     }
   }
 
-  function showToast(text) {
-    document.getElementById('toastText').textContent = text;
-    const t = document.getElementById('toast');
-    t.classList.remove('hidden');
-    setTimeout(() => t.classList.add('hidden'), 2500);
-  }
-
   function copyIP() {
     navigator.clipboard.writeText('arenaPVP4354.aternos.me:11074').then(() => {
-      showToast('IP скопирован!');
+      const t = document.getElementById('toast');
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 2500);
     });
   }
 
-  // ==================== CHAT LOGIC ====================
-  let chatSocket = null;
-  let clientId = localStorage.getItem('arena_chat_client_id');
-  let clientNick = localStorage.getItem('arena_chat_nick');
-  let chatConnected = false;
-  let unreadCount = 0;
-  let chatWindowOpen = false;
-
-  // Генерация уникального ID клиента
-  function generateClientId() {
-    return 'client_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-  }
-
-  if (!clientId) {
-    clientId = generateClientId();
-    localStorage.setItem('arena_chat_client_id', clientId);
-  }
+  // Chat widget
+  let selectedMessage = '';
+  let selectedManager = '';
 
   function toggleChat() {
     const win = document.getElementById('chatWindow');
-    chatWindowOpen = !chatWindowOpen;
-    if (chatWindowOpen) {
-      win.classList.add('active');
-      // Если чат открыт — сбрасываем непрочитанные
-      unreadCount = 0;
-      updateBadge();
-    } else {
-      win.classList.remove('active');
-    }
+    win.classList.toggle('active');
   }
 
-  function submitNick() {
-    const input = document.getElementById('chatNickInput');
-    const nick = input.value.trim();
-    if (!nick) {
-      input.style.borderColor = '#ef4444';
-      setTimeout(() => input.style.borderColor = '#2a2a4e', 1500);
-      return;
-    }
-    clientNick = nick;
-    localStorage.setItem('arena_chat_nick', nick);
-    
-    // Переключаем на чат
-    document.getElementById('chatNickForm').style.display = 'none';
-    document.getElementById('chatBody').style.display = 'block';
-    document.getElementById('chatInputArea').style.display = 'flex';
-    
-    // Подключаемся к WebSocket
-    connectChat();
+  function openChat() {
+    const win = document.getElementById('chatWindow');
+    win.classList.add('active');
   }
 
-  function connectChat() {
-    if (chatSocket && chatSocket.readyState === WebSocket.OPEN) return;
-    
-    updateConnectionStatus('connecting');
-    
-    try {
-      chatSocket = new WebSocket(`${CHAT_SERVER_URL}/ws/client/${clientId}`);
-      
-      chatSocket.onopen = () => {
-        chatConnected = true;
-        updateConnectionStatus('online');
-        document.getElementById('chatConnectionMsg').style.display = 'none';
-        
-        // Отправляем ник владельцу
-        chatSocket.send(JSON.stringify({
-          type: 'set_nick',
-          nick: clientNick
-        }));
-      };
-      
-      chatSocket.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          handleChatMessage(data);
-        } catch (e) {
-          console.error('Parse error:', e);
-        }
-      };
-      
-      chatSocket.onerror = (e) => {
-        console.error('WebSocket error:', e);
-        chatConnected = false;
-        updateConnectionStatus('offline');
-      };
-      
-      chatSocket.onclose = () => {
-        chatConnected = false;
-        updateConnectionStatus('offline');
-        // Пытаемся переподключиться через 5 секунд
-        setTimeout(() => {
-          if (chatWindowOpen && clientNick) {
-            connectChat();
-          }
-        }, 5000);
-      };
-    } catch (e) {
-      console.error('Connection error:', e);
-      updateConnectionStatus('offline');
-    }
+  function selectQuickBtn(btn, msg) {
+    document.querySelectorAll('.chat-quick-btn').forEach(b => b.style.background = 'rgba(255,255,255,0.05)');
+    btn.style.background = 'rgba(34,158,217,0.2)';
+    selectedMessage = msg;
+    updateSendBtn();
   }
 
-  function handleChatMessage(data) {
-    const msgType = data.type;
-    
-    if (msgType === 'history') {
-      const messages = data.messages || [];
-      messages.forEach(msg => appendMessage(msg));
-    } else if (msgType === 'message') {
-      if (data.from === 'owner') {
-        appendMessage(data);
-        // Если окно закрыто — увеличиваем счётчик
-        if (!chatWindowOpen) {
-          unreadCount++;
-          updateBadge();
-        }
-      }
-    } else if (msgType === 'typing') {
-      showTyping();
-    }
+  function selectManager(manager, btn) {
+    document.querySelectorAll('.chat-manager-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedManager = manager;
+    updateSendBtn();
   }
 
-  function appendMessage(msg) {
-    const container = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    
-    const from = msg.from;
-    const text = msg.text || '';
-    const timestamp = msg.timestamp;
-    const ownerId = msg.owner_id || '';
-    
-    let timeStr = '';
-    try {
-      const dt = new Date(timestamp);
-      timeStr = dt.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-    } catch (e) {
-      timeStr = '';
-    }
-    
-    if (from === 'client') {
-      div.className = 'chat-msg client';
-      div.innerHTML = `
-        <div class="chat-msg-meta">👤 Ты • ${timeStr}</div>
-        <div class="chat-msg-bubble">${escapeHtml(text)}</div>
-      `;
-    } else {
-      div.className = 'chat-msg owner';
-      const ownerColor = ownerId === 'Basicus228' ? '#3b82f6' : '#a855f7';
-      div.innerHTML = `
-        <div class="chat-msg-meta" style="color:${ownerColor}">👑 ${ownerId} • ${timeStr}</div>
-        <div class="chat-msg-bubble">${escapeHtml(text)}</div>
-      `;
-    }
-    
-    container.appendChild(div);
-    
-    // Прокрутка вниз
-    const body = document.getElementById('chatBody');
-    body.scrollTop = body.scrollHeight;
+  function updateSendBtn() {
+    const btn = document.getElementById('chatSendBtn');
+    btn.disabled = !(selectedMessage && selectedManager);
   }
 
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML.replace(/\n/g, '<br>');
+  function sendToTelegram() {
+    if (!selectedMessage || !selectedManager) return;
+    const url = `https://t.me/${selectedManager}?text=${encodeURIComponent(selectedMessage)}`;
+    window.open(url, '_blank');
   }
-
-  function sendMessage() {
-    const input = document.getElementById('chatInput');
-    const text = input.value.trim();
-    if (!text || !chatConnected) return;
-    
-    chatSocket.send(JSON.stringify({
-      type: 'message',
-      text: text
-    }));
-    
-    // Локально показываем сразу
-    appendMessage({
-      from: 'client',
-      text: text,
-      timestamp: new Date().toISOString()
-    });
-    
-    input.value = '';
-    input.style.height = 'auto';
-    document.getElementById('chatSendBtn').disabled = true;
-  }
-
-  function handleChatKeydown(event) {
-    const input = document.getElementById('chatInput');
-    
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      sendMessage();
-    }
-    
-    // Автовысота textarea
-    setTimeout(() => {
-      input.style.height = 'auto';
-      input.style.height = Math.min(input.scrollHeight, 100) + 'px';
-      document.getElementById('chatSendBtn').disabled = !input.value.trim();
-    }, 0);
-  }
-
-  function updateConnectionStatus(status) {
-    const btn = document.getElementById('chatWidgetBtn');
-    const statusEl = document.getElementById('chatAvatarStatus');
-    const statusText = document.getElementById('chatStatusText');
-    
-    btn.classList.remove('online', 'offline');
-    statusEl.classList.remove('online', 'offline');
-    
-    if (status === 'online') {
-      btn.classList.add('online');
-      statusEl.classList.add('online');
-      statusText.textContent = 'Владельцы онлайн';
-      statusText.style.color = '#10b981';
-    } else if (status === 'offline') {
-      btn.classList.add('offline');
-      statusEl.classList.add('offline');
-      statusText.textContent = 'Переподключение...';
-      statusText.style.color = '#ef4444';
-    } else {
-      statusText.textContent = 'Подключение...';
-      statusText.style.color = '#fbbf24';
-    }
-  }
-
-  function updateBadge() {
-    const badge = document.getElementById('chatBadge');
-    if (unreadCount > 0) {
-      badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
-      badge.classList.add('show');
-    } else {
-      badge.classList.remove('show');
-    }
-  }
-
-  let typingTimeout = null;
-  function showTyping() {
-    const typing = document.getElementById('chatTyping');
-    typing.classList.add('show');
-    if (typingTimeout) clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(() => {
-      typing.classList.remove('show');
-    }, 3000);
-  }
-
-  // Инициализация при загрузке
-  window.addEventListener('load', () => {
-    // Если ник уже сохранён — сразу показываем чат
-    if (clientNick) {
-      document.getElementById('chatNickForm').style.display = 'none';
-      document.getElementById('chatBody').style.display = 'block';
-      document.getElementById('chatInputArea').style.display = 'flex';
-      // Подключаемся сразу
-      connectChat();
-    }
-  });
 </script>
 
 </body>
